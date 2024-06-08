@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ Title }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ result }}</h2>
+    <p>{{ last }}</p>
+    <img src='https://xingzhihelloworld.z35.web.core.windows.net/mcq/{{ filename }}' alt="Question" width="600">
+    <form action="." method="POST"> {% csrf_token %}
+        <input type="radio" id="A" name="answer" value="A" required>
+        <label for="A">A</label><br>
+        <input type="radio" id="B" name="answer" value="B">
+        <label for="B">B</label><br>
+        <input type="radio" id="C" name="answer" value="C">
+        <label for="C">C</label><br>
+        <input type="radio" id="D" name="answer" value="D">
+        <label for="D">D</label><br>
+        <input type="submit" value="Submit"/>
+    </form>
+    <br>
+    <form action="." method="POST"> {% csrf_token %}
+        <input type="submit" value="Next" name="next"/>
+    </form>
+    <p>Source: {{ source }}</p>
+{% endblock %}
