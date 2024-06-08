@@ -125,7 +125,7 @@ def physics(request):
         }
     else:
         context = {
-            'filename': f'physQuestion/{files[rec.currentphys][0]}',
+            'filename': f'phys/{files[rec.currentphys][0]}',
             'result': result,
             'last': last,
             'Title': 'Physics practice',
