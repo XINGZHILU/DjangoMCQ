@@ -11,5 +11,6 @@ urlpatterns = [
     path('leaderboard/', views.leaderboard, name='leaderboard'),
     path('account/', views.account, name='account'),
     path('customised/', views.customised, name='customised'),
-    path('about/', views.about, name='about')
+    path('about/', views.about, name='about'),
+    path('downloaddb/', views.database, name='database')
 ]

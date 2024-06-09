@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.core.files import File
 from .models import *
 import random
 import datetime
@@ -256,3 +258,13 @@ def about(request):
     return render(request, 'about.html', {})
 
 
+def database(request):
+    if request.user.is_superuser:
+        db_path = settings.DATABASES['default']['NAME']
+        dbfile = File(open(db_path, "rb"))
+        response = HttpResponse(dbfile)
+        response['Content-Disposition'] = 'attachment; filename=%s' % db_path
+        response['Content-Length'] = dbfile.size
+        return response
+    else:
+        return HttpResponse('You are not allowed to download the database')
