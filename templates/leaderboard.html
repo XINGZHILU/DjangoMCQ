@@ -7,20 +7,20 @@
 {% block content %}
     <h2>Most questions solved:</h2>
     <ol>
-    {% for name, count in top10ovr %}
-        <li>{{ name }}, {{ count }} question(s) solved</li>
+    {% for name, acc, count in top10ovr %}
+        <li>{{ name }}, {{ count }} question(s) solved correctly, accuracy: {{ acc }}</li>
     {% endfor %}
     </ol>
     <h2>Most physics questions solved:</h2>
     <ol>
-    {% for name, count in top10phys %}
-        <li>{{ name }}, {{ count }} question(s) solved</li>
+    {% for name, acc, count in top10phys %}
+        <li>{{ name }}, {{ count }} question(s) solved correctly, accuracy: {{ acc }}</li>
     {% endfor %}
     </ol>
     <h2>Most economics questions solved:</h2>
     <ol>
-    {% for name, count in top10econ %}
-        <li>{{ name }}, {{ count }} question(s) solved</li>
+    {% for name, acc, count in top10econ %}
+        <li>{{ name }}, {{ count }} question(s) solved correctly, accuracy: {{ acc }}</li>
     {% endfor %}
     </ol>
 {% endblock %}

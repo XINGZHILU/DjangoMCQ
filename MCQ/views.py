@@ -114,6 +114,13 @@ def physics(request):
                 stat.correct += 1
             else:
                 result = 'Wrong answer'
+                if rec.physics[rec.currentphys] == '0':
+                    new = list(rec.physics)
+                    new[rec.currentphys] = '1'
+                    rec.physics = ''.join(new)
+                    rec.physwrong += 1
+                    rec.totalwrong += 1
+                    rec.save()
                 stat.wrong += 1
             stat.save()
     if rec.currentphys == -1:
@@ -180,8 +187,6 @@ def economics(request):
                     rec.economics = ''.join(new)
                     rec.econwrong += 1
                     rec.totalwrong += 1
-                    rec.econlast = datetime.datetime.now()
-                    rec.ovrlast = datetime.datetime.now()
                     rec.save()
                 stat.wrong += 1
             stat.save()
@@ -208,15 +213,21 @@ def getname(username):
     user = User.objects.filter(username=username).all()[0]
     return f'{user.first_name} {user.last_name}'
 
+def acccalc(correct, wrong):
+    try:
+        acc = correct/(correct+wrong)*100
+    except ZeroDivisionError:
+        acc = 0
+    return f'{round(acc, 2)}%'
 
 def leaderboard(request):
     top10ovr, top10phys, top10econ = [], [], []
     for i in Record.objects.all().order_by('-totalsolved', 'totalwrong', 'ovrlast')[:10]:
-        top10ovr.append([getname(i.username), i.totalsolved])
+        top10ovr.append([getname(i.username), acccalc(i.totalsolved, i.totalwrong), i.totalsolved])
     for i in Record.objects.all().order_by('-physsolved', 'physwrong', 'physlast')[:10]:
-        top10phys.append([getname(i.username), i.physsolved])
+        top10phys.append([getname(i.username), acccalc(i.physsolved, i.physwrong), i.physsolved])
     for i in Record.objects.all().order_by('-econsolved', 'econwrong', 'econlast')[:10]:
-        top10econ.append([getname(i.username), i.econsolved])
+        top10econ.append([getname(i.username), acccalc(i.econsolved, i.econwrong), i.econsolved])
     context = {
         'top10ovr': top10ovr,
         'top10phys': top10phys,
