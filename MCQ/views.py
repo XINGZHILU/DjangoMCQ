@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import render, redirect
@@ -174,6 +174,15 @@ def economics(request):
                 stat.correct += 1
             else:
                 result = 'Wrong answer'
+                if rec.economics[rec.currentecon] == '0':
+                    new = list(rec.economics)
+                    new[rec.currentecon] = '1'
+                    rec.economics = ''.join(new)
+                    rec.econwrong += 1
+                    rec.totalwrong += 1
+                    rec.econlast = datetime.datetime.now()
+                    rec.ovrlast = datetime.datetime.now()
+                    rec.save()
                 stat.wrong += 1
             stat.save()
     if rec.currentecon == -1:
@@ -202,11 +211,11 @@ def getname(username):
 
 def leaderboard(request):
     top10ovr, top10phys, top10econ = [], [], []
-    for i in Record.objects.all().order_by('-totalsolved', 'ovrlast')[:10]:
+    for i in Record.objects.all().order_by('-totalsolved', 'totalwrong', 'ovrlast')[:10]:
         top10ovr.append([getname(i.username), i.totalsolved])
-    for i in Record.objects.all().order_by('-physsolved', 'physlast')[:10]:
+    for i in Record.objects.all().order_by('-physsolved', 'physwrong', 'physlast')[:10]:
         top10phys.append([getname(i.username), i.physsolved])
-    for i in Record.objects.all().order_by('-econsolved', 'econlast')[:10]:
+    for i in Record.objects.all().order_by('-econsolved', 'econwrong', 'econlast')[:10]:
         top10econ.append([getname(i.username), i.econsolved])
     context = {
         'top10ovr': top10ovr,
@@ -242,10 +251,12 @@ def account(request):
                 user.set_password(new1)
                 user.save()
                 message = "Password changed successfully"
+    rec = Record.objects.filter(username=request.user.username).all()[0]
     context = {
         'firstname': user.first_name,
         'lastname': user.last_name,
-        'message': message
+        'message': message,
+        'canchangename': (not rec.official)
     }
     return render(request, 'account.html', context)
 

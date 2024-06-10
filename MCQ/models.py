@@ -12,10 +12,19 @@ class Record(models.Model):
     currentecon = models.IntegerField(default=0)
     physsolved = models.IntegerField(default=0)
     econsolved = models.IntegerField(default=0)
+    physwrong = models.IntegerField(default=0)
+    econwrong = models.IntegerField(default=0)
+    biolsolved = models.IntegerField(default=0)
+    chemsolved = models.IntegerField(default=0)
+    biolwrong = models.IntegerField(default=0)
+    chemwrong = models.IntegerField(default=0)
     totalsolved = models.IntegerField(default=0)
+    totalwrong = models.IntegerField(default=0)
     physlast = models.DateTimeField(default='2024-06-09 00:00:00+00:00')
     econlast = models.DateTimeField(default='2024-06-09 00:00:00+00:00')
     ovrlast = models.DateTimeField(default='2024-06-09 00:00:00+00:00')
+    official = models.BooleanField(default=False)
+    yeargroup = models.CharField(max_length=255, default='Not assigned')
 
     def __str__(self):
         return self.username

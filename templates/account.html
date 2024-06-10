@@ -6,19 +6,22 @@
 
 {% block content %}
     <h1>Manage account information</h1>
-    <h2>Change name</h2>
-    <form action="/account/" method="post">
-        {% csrf_token %}
-        <label for="firstname">First name:</label>
-        <input type="text" name="firstname" placeholder="First name" value={{ firstname }} required>
-        <br>
+    {% if canchangename %}
+        <h2>Change name</h2>
+        <form action="/account/" method="post">
+            {% csrf_token %}
+            <label for="firstname">First name:</label>
+            <input type="text" name="firstname" placeholder="First name" value={{ firstname }} required>
+            <br>
 
-        <label for="lastname">Last name:</label>
-        <input type="text" name="lastname" placeholder="Last name" value={{ lastname }} required>
-        <br>
+            <label for="lastname">Last name:</label>
+            <input type="text" name="lastname" placeholder="Last name" value={{ lastname }} required>
+            <br>
 
-        <input type="submit" VALUE="Save" name="name">
-    </form>
+            <input type="submit" VALUE="Save" name="name">
+        </form>
+    {% endif %}
+
     <h2>Change password</h2>
     <form action="/account/" method="post">
         {% csrf_token %}
