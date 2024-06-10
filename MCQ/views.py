@@ -267,4 +267,4 @@ def database(request):
         response['Content-Length'] = dbfile.size
         return response
     else:
-        return HttpResponse('You are not allowed to download the database')
+        return render(request, '404.html')
