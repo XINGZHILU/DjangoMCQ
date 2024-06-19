@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'DjangoMCQ.wsgi.application'
 
 
 
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -85,6 +85,7 @@ DATABASES = {
     }
 }
 
+"""
 
 """
 DATABASES = {
@@ -94,10 +95,11 @@ DATABASES = {
         'USER': 'postgres.mpnccuuftiwdzanumwvf',
         'PASSWORD': 'Legogeek23',
         'HOST': 'aws-0-eu-central-1.pooler.supabase.com',
-        'PORT': '6543',
+        'PORT': '5432',
     }
 }
 """
+
 
 
 
