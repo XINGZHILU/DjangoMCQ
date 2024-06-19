@@ -12,5 +12,5 @@ urlpatterns = [
     path('account/', views.account, name='account'),
     path('customised/', views.customised, name='customised'),
     #path('about/', views.about, name='about'),
-    path('downloaddb/', views.database, name='database')
+    path('downloaddb/', views.database, name='database'),
 ]

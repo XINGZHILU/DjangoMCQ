@@ -16,6 +16,9 @@
     {# <a href="/customised">Customised practice</a> #}
     <b><a href="/account">Manage account</a></b>
 </div>
+{% if name != "visitor" %}
+    <p>Logged in as {{ name }} <a href="/logout/">Logout</a></p>
+{% endif %}
 {% block content %}
 {% endblock %}
 

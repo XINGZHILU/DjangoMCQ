@@ -35,7 +35,7 @@ def login_page(request):
             login(request, user)
             return redirect('/')
 
-    return render(request, 'login.html', {'message':message})
+    return render(request, 'login.html', {'name':'visitor','message':message})
 
 
 def register_page(request):
@@ -65,6 +65,7 @@ def register_page(request):
         return redirect('/login')
 
     context = {
+        'name': f'{request.user.first_name} {request.user.last_name}',
         'message': message
     }
     return render(request, 'register.html', context)
@@ -73,12 +74,12 @@ def register_page(request):
 def logout_page(request):
     logout(request)
 
-    return render(request, 'logout.html')
+    return render(request, 'logout.html',{'name':'visitor'})
 
 
 def physics(request):
     if request.user.username == '':
-        return render(request, 'loginneeded.html', {})
+        return render(request, 'loginneeded.html', {'name':'visitor'})
     rec = Record.objects.filter(username=request.user.username).all()[0]
     files = PhysicsMCQ.objects.values_list('filename')
     qs = len(files)
@@ -126,6 +127,7 @@ def physics(request):
     if rec.currentphys == -1:
         result = 'You have finished all questions, congratulations!'
         context = {
+            'name': f'{request.user.first_name} {request.user.last_name}',
             'filename': 'phys/finished.jpg',
             'result': result,
             'last': last,
@@ -134,6 +136,7 @@ def physics(request):
         }
     else:
         context = {
+            'name': f'{request.user.first_name} {request.user.last_name}',
             'filename': f'phys/{files[rec.currentphys][0]}',
             'result': result,
             'last': last,
@@ -145,7 +148,7 @@ def physics(request):
 
 def economics(request):
     if request.user.username == '':
-        return render(request, 'loginneeded.html', {})
+        return render(request, 'loginneeded.html', {'name':'visitor'})
     rec = Record.objects.filter(username=request.user.username).all()[0]
     files = EconomicsMCQ.objects.values_list('filename')
     qs = len(files)
@@ -192,6 +195,7 @@ def economics(request):
             stat.save()
     if rec.currentecon == -1:
         context = {
+            'name': f'{request.user.first_name} {request.user.last_name}',
             'filename': 'econfinished.jpg',
             'result': result,
             'last': last,
@@ -200,6 +204,7 @@ def economics(request):
         }
     else:
         context = {
+            'name': f'{request.user.first_name} {request.user.last_name}',
             'filename': f'econ/{files[rec.currentecon][0]}',
             'result': result,
             'last': last,
@@ -228,7 +233,12 @@ def leaderboard(request):
         top10phys.append([getname(i.username), acccalc(i.physsolved, i.physwrong), i.physsolved])
     for i in Record.objects.all().order_by('-econsolved', 'econwrong', 'econlast')[:10]:
         top10econ.append([getname(i.username), acccalc(i.econsolved, i.econwrong), i.econsolved])
+    if request.user.username == '':
+        name = 'visitor'
+    else:
+        name = f'{request.user.first_name} {request.user.last_name}'
     context = {
+        'name': name,
         'top10ovr': top10ovr,
         'top10phys': top10phys,
         'top10econ': top10econ
@@ -238,7 +248,7 @@ def leaderboard(request):
 
 def account(request):
     if request.user.username == '':
-        return render(request, 'loginneeded.html', {})
+        return render(request, 'loginneeded.html', {'name':'visitor'})
 
     message = ''
     user = User.objects.filter(username=request.user.username).all()[0]
@@ -264,6 +274,7 @@ def account(request):
                 message = "Password changed successfully"
     rec = Record.objects.filter(username=request.user.username).all()[0]
     context = {
+        'name': f'{request.user.first_name} {request.user.last_name}',
         'firstname': user.first_name,
         'lastname': user.last_name,
         'message': message,
@@ -290,3 +301,4 @@ def database(request):
         return response
     else:
         return render(request, '404.html')
+
