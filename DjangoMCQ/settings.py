@@ -77,7 +77,18 @@ WSGI_APPLICATION = 'DjangoMCQ.wsgi.application'
 
 
 
-
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres.mpnccuuftiwdzanumwvf',
+        'PASSWORD': 'Legogeek23',
+        'HOST': 'aws-0-eu-central-1.pooler.supabase.com',
+        'PORT': '21',
+    }
+}
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -87,18 +98,8 @@ DATABASES = {
 
 
 
-"""
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres.mpnccuuftiwdzanumwvf',
-        'PASSWORD': 'Legogeek23',
-        'HOST': 'aws-0-eu-central-1.pooler.supabase.com',
-        'PORT': '5432',
-    }
-}
-"""
+
+
 
 
 
