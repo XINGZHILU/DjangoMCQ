@@ -48,9 +48,9 @@ def register_page(request):
         repeat = request.POST.get('pwrepeat')
         user = User.objects.filter(username=username)
         if user.exists():
-            return render(request, 'register.html', {'message': "Username already taken!"})
+            return render(request, 'register.html', {'name':'visitor','message': "Username already taken!"})
         elif password != repeat:
-            return render(request, 'register.html', {'message': "Password entered doesn't match"})
+            return render(request, 'register.html', {'name':'visitor','message': "Password entered doesn't match"})
         user = User.objects.create_user(
             first_name=firstname,
             last_name=lastname,
@@ -65,7 +65,7 @@ def register_page(request):
         return redirect('/login')
 
     context = {
-        'name': f'{request.user.first_name} {request.user.last_name}',
+        'name': 'visitor',
         'message': message
     }
     return render(request, 'register.html', context)
