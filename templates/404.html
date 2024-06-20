@@ -1,12 +1,25 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title %}
-    Page not found
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page not found</title>
+    {% load static %}
+    <link href={% static 'css/main.css' %} rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href={% static 'favicon.ico' %}>
+</head>
+<body>
+<div class="topnav">
+    <a href="/">Home</a>
+    {# <a href="/about">About</a> #}
+    <a href="/practice/physics">Physics practice</a>
+    <a href="/practice/economics">Economics practice</a>
+    <a href="/leaderboard">Leaderboard</a>
+    {# <a href="/customised">Customised practice</a> #}
+    <b><a href="/account">Manage account</a></b>
 
-{% block content %}
-
-    <h1>Page not found</h1>
+</div>
+<h1>Page not found</h1>
     <p><a href="/">Return home</a></p>
 
-{% endblock %}
+
+</body>
+

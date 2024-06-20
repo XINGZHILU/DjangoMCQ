@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Filter
+{% endblock %}
+
+{% block content %}
+    <h1>Settings</h1>
+    <h2>Which years do you want the questions to come from:</h2>
+    <form action="." method="post">
+        {% csrf_token %}
+        {% if selected.2003 == '1' %}
+            <input type="checkbox" value="y" name="2003" checked> 2003 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2003"> 2003 <br>
+        {% endif %}
+        {% if selected.2004 == '1' %}
+            <input type="checkbox" value="y" name="2004" checked> 2004 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2004"> 2004 <br>
+        {% endif %}
+        {% if selected.2005 == '1' %}
+            <input type="checkbox" value="y" name="2005" checked> 2005 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2005"> 2005 <br>
+        {% endif %}
+        {% if selected.2006 == '1' %}
+            <input type="checkbox" value="y" name="2006" checked> 2006 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2006"> 2006 <br>
+        {% endif %}
+        {% if selected.2007 == '1' %}
+            <input type="checkbox" value="y" name="2007" checked> 2007 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2007"> 2007 <br>
+        {% endif %}
+        {% if selected.2008 == '1' %}
+            <input type="checkbox" value="y" name="2008" checked> 2008 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2008"> 2008 <br>
+        {% endif %}
+        {% if selected.2009 == '1' %}
+            <input type="checkbox" value="y" name="2009" checked> 2009 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2009"> 2009 <br>
+        {% endif %}
+        {% if selected.2010 == '1' %}
+            <input type="checkbox" value="y" name="2010" checked> 2010 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2010"> 2010 <br>
+        {% endif %}
+        {% if selected.2011 == '1' %}
+            <input type="checkbox" value="y" name="2011" checked> 2011 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2011"> 2011 <br>
+        {% endif %}
+        {% if selected.2012 == '1' %}
+            <input type="checkbox" value="y" name="2012" checked> 2012 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2012"> 2012 <br>
+        {% endif %}
+        {% if selected.2013 == '1' %}
+            <input type="checkbox" value="y" name="2013" checked> 2013 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2013"> 2013 <br>
+        {% endif %}
+        {% if selected.2014 == '1' %}
+            <input type="checkbox" value="y" name="2014" checked> 2014 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2014"> 2014 <br>
+        {% endif %}
+        {% if selected.2015 == '1' %}
+            <input type="checkbox" value="y" name="2015" checked> 2015 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2015"> 2015 <br>
+        {% endif %}
+        {% if selected.2016 == '1' %}
+            <input type="checkbox" value="y" name="2016" checked> 2016 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2016"> 2016 <br>
+        {% endif %}
+        {% if selected.2017 == '1' %}
+            <input type="checkbox" value="y" name="2017" checked> 2017 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2017"> 2017 <br>
+        {% endif %}
+        {% if selected.2018 == '1' %}
+            <input type="checkbox" value="y" name="2018" checked> 2018 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2018"> 2018 <br>
+        {% endif %}
+        {% if selected.2019 == '1' %}
+            <input type="checkbox" value="y" name="2019" checked> 2019 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2019"> 2019 <br>
+        {% endif %}
+        {% if selected.2020 == '1' %}
+            <input type="checkbox" value="y" name="2020" checked> 2020 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2020"> 2020 <br>
+        {% endif %}
+        {% if selected.2021 == '1' %}
+            <input type="checkbox" value="y" name="2021" checked> 2021 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2021"> 2021 <br>
+        {% endif %}
+        {% if selected.2022 == '1' %}
+            <input type="checkbox" value="y" name="2022" checked> 2022 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2022"> 2022 <br>
+        {% endif %}
+        {% if selected.2023 == '1' %}
+            <input type="checkbox" value="y" name="2023" checked> 2023 <br>
+        {% else %}
+            <input type="checkbox" value="y" name="2023"> 2023 <br>
+        {% endif %}
+        <input type="submit" value="Select all years" name="all"><br>
+        <input type="submit" value="Save changes" name="save">
+    </form>
+
+{% endblock %}

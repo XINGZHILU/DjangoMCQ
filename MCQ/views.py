@@ -302,3 +302,22 @@ def database(request):
     else:
         return render(request, '404.html')
 
+def settings(request):
+    if request.user.username == '':
+        return render(request, 'loginneeded.html', {'name':'visitor'})
+    rec = Record.objects.filter(username=request.user.username).all()[0]
+    if request.method == 'POST':
+        yrs = list(request.POST.keys())
+        if 'save' in yrs:
+            new = list(rec.yearselected)
+            for i in range(2003, 2024):
+                if str(i) in yrs:
+                    new[i] = '1'
+                else:
+                    new[i] = '0'
+            rec.yearselected = ''.join(new)
+            rec.save()
+        elif 'all' in yrs:
+            rec.yearselected = '1' * 4095
+            rec.save()
+    return render(request, 'settings.html', {'name': 'visitor', 'years': list(range(2003,2024)), 'selected': rec.yearselected})

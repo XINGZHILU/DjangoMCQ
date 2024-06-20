@@ -25,6 +25,7 @@ class Record(models.Model):
     ovrlast = models.DateTimeField(default='2024-06-09 00:00:00+00:00')
     official = models.BooleanField(default=False)
     yeargroup = models.CharField(max_length=255, default='Not assigned')
+    yearselected = models.CharField(default='1' * 4095, max_length=4095)
 
     def __str__(self):
         return self.username
@@ -32,6 +33,8 @@ class Record(models.Model):
 
 class PhysicsMCQ(models.Model):
     no = models.IntegerField(default=0)
+    year = models.IntegerField(default=0)
+    topic = models.CharField(max_length=64, default='unclassified')
     filename = models.CharField(max_length=64, default='placeholder.png')
     ans = models.CharField(max_length=1, default='A')
 
@@ -41,6 +44,8 @@ class PhysicsMCQ(models.Model):
 
 class EconomicsMCQ(models.Model):
     no = models.IntegerField(default=0)
+    year = models.IntegerField(default=0)
+    topic = models.CharField(max_length=64, default='unclassified')
     filename = models.CharField(max_length=64, default='placeholder.png')
     ans = models.CharField(max_length=1, default='A')
 
@@ -49,6 +54,8 @@ class EconomicsMCQ(models.Model):
 
 class BiologyMCQ(models.Model):
     no = models.IntegerField(default=0)
+    year = models.IntegerField(default=0)
+    topic = models.CharField(max_length=64, default='unclassified')
     filename = models.CharField(max_length=64, default='placeholder.png')
     ans = models.CharField(max_length=1, default='A')
 
@@ -58,6 +65,8 @@ class BiologyMCQ(models.Model):
 
 class ChemistryMCQ(models.Model):
     no = models.IntegerField(default=0)
+    year = models.IntegerField(default=0)
+    topic = models.CharField(max_length=64, default='unclassified')
     filename = models.CharField(max_length=64, default='placeholder.png')
     ans = models.CharField(max_length=1, default='A')
 
